@@ -5,6 +5,7 @@
     <title>UCMCIS_2ndExp</title>
     <script src="https://unpkg.com/jspsych@7.3.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-sketchpad@1.0.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.2"></script>
@@ -28,10 +29,10 @@
 
     // intialize jsPsych
     var jsPsych = initJsPsych({
-        // on_finish: function() {
-        //     jsPsych.data.displayData();
+        on_finish: function() {
+            jsPsych.data.displayData();
 
-        // }
+        }
     });
 
     //To run the experiment without Prolific website 
@@ -59,9 +60,6 @@
     var timeline = [];
 
     var tr_duration = 3000;
-    var Maze_Linear = ['Venice_Map.png'];
-    var Maze_Diverse = ['Venice_Map.png'];
-
 
     var let_set = [
         "<b>ab</b>",
@@ -91,49 +89,1417 @@
     ];
     var shuffled_CRAP_set = jsPsych.randomization.repeat(CRAP_set, 1);
 
-    var Venice1_prompt_linear = [
 
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>94<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>34<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>89<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>72<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>31<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>41<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>76<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>18<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>57<b> <p>",
-        "<p>Imagine there are five items on the red dots. Deliver the items from the red spots to the follwoing location (hold <b>Ctrl</b> to draw):<p> <b>22<b> <p>",
-    ];
+    //number of the button clicked
+    var clk_num = 0;
+    //time when previous button clicked
+    var pr_click_t = 0;
+    //The sympol to be shown inside the hit buttons
+    var button_hit = 'X';
+    var bc_color = 'green';
 
+    var reveal_button_order = jsPsych.randomization.shuffle([
+        table_cluster_1, table_cluster_2, table_cluster_3, table_cluster_4, table_cluster_5, table_cluster_6, table_cluster_7,
+        table_disperse_1, table_disperse_2, table_disperse_3, table_disperse_4, table_disperse_5, table_disperse_6, table_disperse_7,
+        table_betwixt_1, table_betwixt_2, table_betwixt_3, table_betwixt_4, table_betwixt_5, table_betwixt_6, table_betwixt_7
+    ]);
+    var next_table = 0;
+    // Function to create a 5x5 grid of buttons
+    function createGrid() {
+        let gridHtml = '<table>';
+        for (let i = 0; i < 5; i++) {
+            gridHtml += '<tr>';
+            for (let j = 0; j < 5; j++) {
+                gridHtml += `<td><button id="cell_${i}_${j}" style="width:60px; height:60px;" onclick="reveal_button_order[next_table](this, ${i}, ${j})"> </button></td>`;
+            }
+            gridHtml += '</tr>';
+        }
+        gridHtml += '</table>';
+        return gridHtml;
+        next_table += 1;
+    }
 
-    var Venice1_prompt_diverse = [
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>41, 89, 76, 26, 94<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>22, 78, 34, 29, 14<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>10, 22, 99, 52, 75<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>13, 16, 62, 19, 45<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>15, 59, 37, 92, 61<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>62, 32, 44, 93, 10<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>23, 18, 31, 40, 12<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>48, 57, 72, 29, 39<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>23, 81, 12, 39, 41<b> <p>",
-        "<p>Imagine there are five items on the red dot. Deliver the items from the red spot to the following locations (hold <b>Ctrl</b> to draw):<p> <b>71, 16, 38, 80, 53<b> <p>",
-    ];
+    // Function to reveal the background of the button upon click
+    function table_cluster_1(button, row, col) {
+        if (!button.disable) {
 
-    // between task message
-    var task1_done = {
-        type: jsPsychInstructions,
-        pages: [
-            '<p style="font-size:32px;font-weight:bold;">End of Task 1<p> ' +
-            '<p style="class=positivefeedback;font-size:24px">' +
-            'You have finished the first of two tasks. Whenever you are ready to continue, please click Next to start the second half of the experiment.'
-        ],
-        show_clickable_nav: true,
+            button.disabled = true; // Disable the button
+            clk_num += 1;
 
-        on_start: function () {
-            jsPsych.pluginAPI.clearAllTimeouts();
-        },
+            if (row === 1 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
 
-    };
+            else if (row === 1 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_cluster_2(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 0 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 0 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+    // Function to reveal the background of the button upon click
+    function table_cluster_3(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 3 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+    // Function to reveal the background of the button upon click
+    function table_cluster_4(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 1 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+    // Function to reveal the background of the button upon click
+    function table_cluster_5(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 1 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+    // Function to reveal the background of the button upon click
+    function table_cluster_6(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_cluster_7(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_disperse_1(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 1 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+    // Function to reveal the background of the button upon click
+    function table_disperse_2(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 1 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_disperse_3(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_disperse_4(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_disperse_5(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 0 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_disperse_6(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 0 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_disperse_7(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 1 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_1(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 1 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_2(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_3(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_4(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 0 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_5(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_6(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 0 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 1 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_7(button, row, col) {
+        if (!button.disable) {
+
+            button.disabled = true; // Disable the button
+            clk_num += 1;
+
+            if (row === 1 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 3 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else if (row === 4 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'hit',
+                });
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+                jsPsych.data.addProperties({
+                    ['click_' + clk_num]: 'miss',
+                });
+            }
+
+            jsPsych.data.addProperties({
+                ['button' + clk_num + '_row']: row + 1,
+                ['button' + clk_num + '_col']: col + 1,
+                ['button' + clk_num + '_time']: performance.now(),
+                ['button' + clk_num + '_RT']: performance.now() - pr_click_t,
+            });
+
+            pr_click_t = performance.now();
+        }
+    }
+
 
 
     async function createExperiment() {
@@ -143,39 +1509,26 @@
         //linear condition 'if'
         if (condition == 0) {
 
-            var Venice1_counter = -1;
+            var let_counter = 0;
 
-            var Venice1_task = {
-                type: jsPsychSketchpad,
-                prompt: function () {
-                    Venice1_counter += 1;
-                    return Venice1_prompt_linear[Venice1_counter]
-                },
-                prompt_location: 'abovecanvas',
-                background_image: Maze_Linear,
-                key_to_draw: 'Control',
-                finished_button_label: 'Continue',
-                canvas_width: 1080,
-                canvas_height: 750,
-                canvas_border_width: 3,
-                save_strokes: false,
-                show_clear_button: false,
-
-                on_start: function () {
-                    let_counter += 1;
-                    jsPsych.pluginAPI.clearAllTimeouts();
-                },
-
-                on_finish: function (data) {
-                    const filename = `${subject_id}_${jsPsych.getProgress().current_trial_global}_image.png`;
-                    jsPsychPipe.saveBase64Data(expID, filename, data.png);
-                    // delete the base64 data to save space. store the filename instead.
-                    data.png = filename;
-                },
-
+            var let_set_instruction = {
+                type: jsPsychInstructions,
+                pages: [
+                    '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
+                    '<p style="class=positivefeedback;font-size:24px">' +
+                    'In this task, you will see the first two letters of possible words. For each pair of letters,' +
+                    ' you will have <b>30 seconds</b> to type in as many English words as you can that begin with those letters. ' +
+                    'For example, for <b>lo</b>, you can write down words such as love, low, lobster, lord,' +
+                    ' locomotion, and so on.<p>' +
+                    '<p style="font-size:24px;">You <b>cannot</b> use proper nouns, such as names of places or people (e. g. London, Lora). You can' +
+                    ' be specific in your responses, but do not waste your time by adding different suffixes. For example, ' +
+                    'love, lover, lovely and loved will be counted just once. Keep in mind that wrong words do not ' +
+                    'have negative points; so, if you doubt whether a word is acceptable, just type it in, hit Enter to be saved instantly, and continue ' +
+                    'searching for more words.'
+                ],
+                show_clickable_nav: true
             };
-
-            var let_counter = -1;
+            timeline.push(let_set_instruction);
 
             var let_set_task = {
                 type: jsPsychSurveyHtmlForm,
@@ -193,8 +1546,23 @@
                 },
             }
 
+            var show_table = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: createGrid,
+                choices: ['continue'],
+                prompt: "Find all 5 dots with minimum clicks!",
+                // trial_duration: 10000,
+
+                on_start: function () {
+                    pr_click_t = performance.now();
+                    clk_num = 0;
+                    jsPsych.pluginAPI.clearAllTimeouts();
+                    let_counter += 1;
+                },
+            }
+
             var let_set_procedures = {
-                timeline: [let_set_task, Venice1_task],
+                timeline: [let_set_task, show_table],
                 repetitions: let_set.length,
 
                 on_start: function () {
@@ -205,306 +1573,38 @@
                 }
             }
 
-            var Venice2_counter = -1;
+            timeline.push(let_set_procedures);
 
-            var Venice2_task = {
-                type: jsPsychSketchpad,
-                prompt: function () {
-                    Venice2_counter += 1;
-                    return Venice1_prompt_linear[Venice2_counter]
-                },
-
-                prompt_location: 'abovecanvas',
-                background_image: Maze_Linear,
-                key_to_draw: 'Control',
-                finished_button_label: 'Continue',
-                canvas_width: 1080,
-                canvas_height: 750,
-                canvas_border_width: 3,
-                save_strokes: false,
-                show_clear_button: false,
-
-                on_start: function () {
-                    jsPsych.pluginAPI.clearAllTimeouts();
-                },
-
-                on_finish: function (data) {
-                    const filename = `${subject_id}_${jsPsych.getProgress().current_trial_global}_image.png`;
-                    jsPsychPipe.saveBase64Data(expID, filename, data.png);
-                    // delete the base64 data to save space. store the filename instead.
-                    data.png = filename;
-                },
-
-            };
-
-            var CRAP_counter = -1;
-
-            var CRAP_set_task = {
-                type: jsPsychSurveyHtmlForm,
-                preamble: function () {
-                    CRAP_counter += 1;
-                    return shuffled_CRAP_set[CRAP_counter]
-                },
-
-                html:
-                    '<p> <input name="CRAP_linear" type="text" id="test-resp-box"  style="width:200px;height:50px;" /></p>',
-
-                autofocus: 'test-resp-box',
-                button_label: "Enter",
-
-                on_start: function () {
-                    jsPsych.pluginAPI.clearAllTimeouts();
-
-                    jsPsych.pluginAPI.setTimeout(function () {
-                        jsPsych.finishTrial({ Response: "timeout" });
-                    }, tr_duration);
-                },
-            };
-
-
-
-            var CRAP_procedures = {
-
-                timeline: [CRAP_set_task, Venice2_task],
-                repetitions: CRAP_set.length,
-
-            }
-
-            // Use the randomization plugin to randomly choose which function to push first
-            var functionOrder = jsPsych.randomization.shuffle([let_set_procedures, CRAP_procedures]);
-
-            // Push the functions into the timeline in the randomly determined order
-            if (functionOrder[0] == let_set_procedures) {
-
-                var let_set_instruction_linear1 = {
-                    type: jsPsychInstructions,
-                    pages: [
-
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see the first two letters of possible words. For each pair of letters,' +
-                        ' you will have <b>30 seconds</b> to type in as many English words as you can that begin with those letters. ' +
-                        'For example, for <b>lo</b>, you can write down words such as love, low, lobster, lord,' +
-                        ' locomotion, and so on.<p>' +
-                        '<p style="font-size:24px;">You <b>cannot</b> use proper nouns, such as names of places or people (e. g. London, Lora). You can' +
-                        ' be specific in your responses, but do not waste your time by adding different suffixes. For example, ' +
-                        'love, lover, lovely and loved will be counted just once. Keep in mind that wrong words do not ' +
-                        'have negative points; so, if you doubt whether a word is acceptable, just type it in, hit Enter to be saved instantly, and continue ' +
-                        'searching for more words.',
-                        '<p style="font-size:24px;">Before each trial, you will be shown the following map in which you need to deliver some items from the starting points ' +
-                        '(the red dots on the map) to a location. To do this, simply draw five lines, one by one, from the red dots to the location that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines oonly through the roads and without crossing over the bulidings, and then click on the <b>continue</b> button ' +
-                        'to see the next trial.' +
-                        ' Do not rush in delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button. You will see a video as an example  of how to deliver the items.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-                };
-                timeline.push(let_set_instruction_linear1)
-                timeline.push(functionOrder[0]);
-                timeline.push(task1_done);
-
-                var CRAP_instruction_linear2 = {
-                    type: jsPsychInstructions,
-                    pages: [
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see three words and your job is to find the fourth word that makes a common' +
-                        ' two-word phrase with each of them. For example, if you saw “aid    rubber    wagon”, then the correct'
-                        + ' fourth word that makes a common two-word phrase with each of them is “band” — as in band-aid, rubber' +
-                        ' band, and bandwagon. Another example is “cream    skate    water”.   What word makes a common two-word ' +
-                        'phrase with each of them? It is ice — as in, ice cream, ice skate, and ice water. ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'For each set of three words, you will have up to <b>30 seconds</b> to come up with your solution.' +
-                        ' Please type your solution and hit Enter right away.',
-                        '<p style="font-size:24px;">Like the previous task, before each trial, you will be shown the following map' +
-                        ' in which you need to deliver some items from the starting points ' +
-                        '(the red dots on the map) to a location. To do this, simply draw five lines, one by one,' +
-                        ' from the red dots to the location that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines only through the roads and without crossing over the bulidings,' +
-                        ' and then click on the <b>Continue</b> button to see the next trial.' +
-                        ' Do not rush in delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-                };
-
-                timeline.push(CRAP_instruction_linear2)
-                timeline.push(functionOrder[1]);
-            }
-
-            if (functionOrder[0] == CRAP_procedures) {
-
-
-                var CRAP_instruction_linear1 = {
-                    type: jsPsychInstructions,
-                    pages: [
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see three words and your job is to find the fourth word that makes a common' +
-                        ' two-word phrase with each of them. For example, if you saw “aid    rubber    wagon”, then the correct'
-                        + ' fourth word that makes a common two-word phrase with each of them is “band” — as in band-aid, rubber' +
-                        ' band, and bandwagon. Another example is “cream    skate    water”.   What word makes a common two-word ' +
-                        'phrase with each of them? It is ice — as in, ice cream, ice skate, and ice water. ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'For each set of three words, you will have up to <b>30 seconds</b> to come up with your solution.' +
-                        ' Please type your solution and hit Enter right away.',
-                        '<p style="font-size:24px;">Before each trial, you will be shown the following map' +
-                        ' in which you need to deliver some items from the starting points ' +
-                        '(the red dots on the map) to a location. To do this, simply draw five lines, one by one,' +
-                        ' from the red dots to the location that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines only through the roads and without crossing over the bulidings,' +
-                        ' and then click on the <b>Continue</b> button to see the next trial.' +
-                        ' Do not rush in delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button. You will see a video as an example of how to deliver the items.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-
-                };
-                timeline.push(CRAP_instruction_linear1)
-                timeline.push(functionOrder[0]);
-                timeline.push(task1_done);
-                var let_set_instruction_linear2 = {
-                    type: jsPsychInstructions,
-                    pages: [
-
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see the first two letters of possible words. For each pair of letters,' +
-                        ' you will have <b>30 seconds</b> to type in as many English words as you can that begin with those letters. ' +
-                        'For example, for <b>lo</b>, you can write down words such as love, low, lobster, lord,' +
-                        ' locomotion, and so on.<p>' +
-                        '<p style="font-size:24px;">You <b>cannot</b> use proper nouns, such as names of places or people (e. g. London, Lora). You can' +
-                        ' be specific in your responses, but do not waste your time by adding different suffixes. For example, ' +
-                        'love, lover, lovely and loved will be counted just once. Keep in mind that wrong words do not ' +
-                        'have negative points; so, if you doubt whether a word is acceptable, just type it in, hit Enter to be saved instantly, and continue ' +
-                        'searching for more words.',
-                        '<p style="font-size:24px;">Like the previous task, before each trial, you will be shown the following map in which you need to deliver some items from the starting points ' +
-                        '(the red dots on the map) to a location. To do this, simply draw five lines, one by one, from the red dots to the location that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines through the roads and without crossing over the bulidings, and then click on the <b>continue</b> button ' +
-                        'to see the next trial.' +
-                        ' Do not rush in delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-                };
-                timeline.push(let_set_instruction_linear2);
-                timeline.push(functionOrder[1]);
-
-            }
-
-        };
+        }
 
 
         //diverse condition 'if'
         if (condition == 1) {
-            var Venice1_counter = -1;
 
-            var Venice1_task = {
-                type: jsPsychSketchpad,
-                prompt: function () {
-                    Venice1_counter += 1;
-                    return Venice1_prompt_diverse[Venice1_counter]
-                },
-                prompt_location: 'abovecanvas',
-                background_image: Maze_Diverse,
-                key_to_draw: 'Control',
-                finished_button_label: 'Continue',
-                canvas_width: 1080,
-                canvas_height: 750,
-                canvas_border_width: 3,
-                save_strokes: false,
-                show_clear_button: false,
+            var CRAP_counter = 0;
 
-                on_start: function () {
-                    let_counter += 1;
-                    jsPsych.pluginAPI.clearAllTimeouts();
-                },
-
-                on_finish: function (data) {
-                    const filename = `${subject_id}_${jsPsych.getProgress().current_trial_global}_image.png`;
-                    jsPsychPipe.saveBase64Data(expID, filename, data.png);
-                    // delete the base64 data to save space. store the filename instead.
-                    data.png = filename;
-                },
-
-            };
-
-            var let_counter = -1;
-
-            var let_set_task = {
-                type: jsPsychSurveyHtmlForm,
-                preamble: function () {
-                    return shuffled_let_set[let_counter]
-                },
-                autofocus: 'test-resp-box',
-                button_label: "Enter",
-                timeline: [
-                    { html: '<p> <input name="let_diverse" type="text" id="test-resp-box" /></p>', },
+            var CRAP_instruction = {
+                type: jsPsychInstructions,
+                pages: [
+                    '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
+                    '<p style="class=positivefeedback;font-size:24px">' +
+                    'In this task, you will see three words and your job is to find the fourth word that makes a common' +
+                    ' two-word phrase with each of them. For example, if you saw “aid    rubber    wagon”, then the correct'
+                    + ' fourth word that makes a common two-word phrase with each of them is “band” — as in band-aid, rubber' +
+                    ' band, and bandwagon. Another example is “cream    skate    water”.   What word makes a common two-word ' +
+                    'phrase with each of them? It is ice — as in, ice cream, ice skate, and ice water. ' +
+                    '<p style="class=positivefeedback;font-size:24px">' +
+                    'For each set of three words, you will have up to <b>30 seconds</b> to come up with your solution.' +
+                    ' Please type your solution and hit Enter right away.'
                 ],
-                sample: {
-                    type: 'fixed-repetitions',
-                    size: 25
-                },
-            }
-
-            var let_set_procedures = {
-                timeline: [let_set_task, Venice1_task],
-                repetitions: let_set.length,
-
-                on_start: function () {
-                    jsPsych.pluginAPI.setTimeout(function () {
-                        jsPsych.endCurrentTimeline();
-                        jsPsych.finishTrial({ Response: "timeout" });
-                    }, tr_duration);
-                }
-            }
-
-            var Venice2_counter = -1;
-
-            var Venice2_task = {
-                type: jsPsychSketchpad,
-                prompt: function () {
-                    Venice2_counter += 1;
-                    return Venice1_prompt_diverse[Venice2_counter]
-                },
-                prompt_location: 'abovecanvas',
-                background_image: Maze_Diverse,
-                key_to_draw: 'Control',
-                finished_button_label: 'Continue',
-                canvas_width: 1080,
-                canvas_height: 750,
-                canvas_border_width: 3,
-                save_strokes: false,
-                show_clear_button: false,
-
-                on_start: function () {
-                    jsPsych.pluginAPI.clearAllTimeouts();
-                },
-
-                on_finish: function (data) {
-                    const filename = `${subject_id}_${jsPsych.getProgress().current_trial_global}_image.png`;
-                    jsPsychPipe.saveBase64Data(expID, filename, data.png);
-                    // delete the base64 data to save space. store the filename instead.
-                    data.png = filename;
-                },
-
+                show_clickable_nav: true
             };
-
-            var CRAP_counter = -1;
+            timeline.push(CRAP_instruction);
 
             var CRAP_set_task = {
                 type: jsPsychSurveyHtmlForm,
                 preamble: function () {
-                    CRAP_counter += 1;
+                    
                     return shuffled_CRAP_set[CRAP_counter]
                 },
 
@@ -523,141 +1623,30 @@
                 },
             };
 
+            var show_table = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: createGrid,
+                choices: ['continue'],
+                prompt: "Find all 5 dots with minimum clicks!",
+                //trial_duration: 5000,
+
+                on_start: function () {
+                    pr_click_t = performance.now();
+                    clk_num = 0;
+                    jsPsych.pluginAPI.clearAllTimeouts();
+                    CRAP_counter += 1;
+                    
+                },
+            }
+
+
             var CRAP_procedures = {
 
-                timeline: [CRAP_set_task, Venice2_task],
+                timeline: [CRAP_set_task, show_table],
                 repetitions: CRAP_set.length,
 
             }
-
-            // Use the randomization plugin to randomly choose which function to push first
-            var functionOrder = jsPsych.randomization.shuffle([let_set_procedures, CRAP_procedures]);
-
-            // Push the functions into the timeline in the randomly determined order
-            if (functionOrder[0] == let_set_procedures) {
-
-
-                var let_set_instruction_diverse1 = {
-                    type: jsPsychInstructions,
-                    pages: [
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see the first two letters of possible words. For each pair of letters,' +
-                        ' you will have <b>30 seconds</b> to type in as many English words as you can that begin with those letters. ' +
-                        'For example, for <b>lo</b>, you can write down words such as love, low, lobster, lord,' +
-                        ' locomotion, and so on.<p>' +
-                        '<p style="font-size:24px;">You <b>cannot</b> use proper nouns, such as names of places or people (e. g. London, Lora). You can' +
-                        ' be specific in your responses, but do not waste your time by adding different suffixes. For example, ' +
-                        'love, lover, lovely and loved will be counted just once. Keep in mind that wrong words do not ' +
-                        'have negative points; so, if you doubt whether a word is acceptable, just type it in, hit Enter to be saved instantly, and continue ' +
-                        'searching for more words.',
-                        '<p style="font-size:24px;">Before each trial, you will be shown the following map in which you need to deliver some items from the starting point ' +
-                        '(the red dot on the map) to different locations. To do this, simply draw five lines, one by one,' +
-                        ' from the red dot to the locations that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines only through the roads and without crossing over the bulidings, and then click on the <b>Continue</b> button ' +
-                        'to see the next trial. Do not rush in delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button. You will see a video as an example of how to deliver the items.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-                };
-                timeline.push(let_set_instruction_diverse1);
-                timeline.push(functionOrder[0]);
-                timeline.push(task1_done);
-                var CRAP_instruction_diverse2 = {
-                    type: jsPsychInstructions,
-                    pages: [
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see three words and your job is to find the fourth word that makes a common' +
-                        ' two-word phrase with each of them. For example, if you saw “aid    rubber    wagon”, then the correct'
-                        + ' fourth word that makes a common two-word phrase with each of them is “band” — as in band-aid, rubber' +
-                        ' band, and bandwagon. Another example is “cream    skate    water”.   What word makes a common two-word ' +
-                        'phrase with each of them? It is ice — as in, ice cream, ice skate, and ice water. ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'For each set of three words, you will have up to <b>30 seconds</b> to come up with your solution.' +
-                        ' Please type your solution and hit Enter right away.',
-                        '<p style="font-size:24px;">Like the previous task, before each trial, you will be shown the following map' +
-                        ' in which you need to deliver some items from the starting point ' +
-                        '(the red dot on the map) to different locations. To do this, simply draw five lines, one by one,' +
-                        ' from the red dot to the locations that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines only through the roads and without crossing over the bulidings,' +
-                        ' and then click on the <b>Continue</b> button to see the next trial. Do not rush in' +
-                        ' delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-                };
-                timeline.push(CRAP_instruction_diverse2);
-                timeline.push(functionOrder[1]);
-            }
-
-            if (functionOrder[0] == CRAP_procedures) {
-
-                var CRAP_instruction_diverse1 = {
-                    type: jsPsychInstructions,
-                    pages: [
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see three words and your job is to find the fourth word that makes a common' +
-                        ' two-word phrase with each of them. For example, if you saw “aid    rubber    wagon”, then the correct'
-                        + ' fourth word that makes a common two-word phrase with each of them is “band” — as in band-aid, rubber' +
-                        ' band, and bandwagon. Another example is “cream    skate    water”.   What word makes a common two-word ' +
-                        'phrase with each of them? It is ice — as in, ice cream, ice skate, and ice water. ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'For each set of three words, you will have up to <b>30 seconds</b> to come up with your solution.' +
-                        ' Please type your solution and hit Enter right away.',
-                        '<p style="font-size:24px;">Before each trial, you will be shown the following map' +
-                        ' in which you need to deliver some items from the starting point ' +
-                        '(the red dot on the map) to different locations. To do this, simply draw five lines, one by one,' +
-                        ' from the red dot to the locations that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines only through the roads and without crossing over the bulidings,' +
-                        ' and then click on the <b>Continue</b> button to see the next trial. Do not rush in' +
-                        ' delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button. You will see a video as an example of how to deliver the items.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-                };
-                timeline.push(CRAP_instruction_diverse1);
-                timeline.push(functionOrder[0]);
-                timeline.push(task1_done);
-
-                var let_set_instruction_diverse2 = {
-                    type: jsPsychInstructions,
-                    pages: [
-                        '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
-                        '<p style="class=positivefeedback;font-size:24px">' +
-                        'In this task, you will see the first two letters of possible words. For each pair of letters,' +
-                        ' you will have <b>30 seconds</b> to type in as many English words as you can that begin with those letters. ' +
-                        'For example, for <b>lo</b>, you can write down words such as love, low, lobster, lord,' +
-                        ' locomotion, and so on.<p>' +
-                        '<p style="font-size:24px;">You <b>cannot</b> use proper nouns, such as names of places or people (e. g. London, Lora). You can' +
-                        ' be specific in your responses, but do not waste your time by adding different suffixes. For example, ' +
-                        'love, lover, lovely and loved will be counted just once. Keep in mind that wrong words do not ' +
-                        'have negative points; so, if you doubt whether a word is acceptable, just type it in, hit Enter to be saved instantly, and continue ' +
-                        'searching for more words.',
-                        '<p style="font-size:24px;">Like the previous task, before each trial, you will be shown the following map in which you need to deliver some items from the starting point ' +
-                        '(the red dot on the map) to different locations. To do this, simply draw five lines, one by one,' +
-                        ' from the red dot to the locations that will be mentioned above the map;' +
-                        ' To draw a line hold <b>Ctrl</b> button on your keyboard and move your mouse cursor. ' +
-                        'You should draw the lines only through the roads and without crossing over the bulidings, and then click on the <b>Continue</b> button ' +
-                        'to see the next trial. Do not rush in delivering the items as your 30 seconds time to complete a trial will begin only after ' +
-                        'pushing the Continue button.' + '<br>' +
-                        '<img src="Venice_Map.png"></img>'
-                    ],
-                    show_clickable_nav: true
-                };
-                timeline.push(let_set_instruction_diverse2);
-
-                timeline.push(functionOrder[1]);
-
-            }
-
+            timeline.push(CRAP_procedures);
         };
 
 
