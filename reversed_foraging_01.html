@@ -241,7 +241,6 @@
 
             button.disabled = true; // Disable the button after one click
 
-
             if (row === 1 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
@@ -303,6 +302,7 @@
             clk_num += 1;
             pr_click_t = performance.now();
         }
+        
         if (hit_counter === 5) {
            setTimeout(function() {
                 jsPsych.finishTrial();
@@ -1831,7 +1831,7 @@
         table_disperse_1, table_disperse_2, table_disperse_3, table_disperse_4, table_disperse_5, table_disperse_6, table_disperse_7,
         table_betwixt_1, table_betwixt_2, table_betwixt_3, table_betwixt_4, table_betwixt_5, table_betwixt_6, table_betwixt_7
     ]);
-    var next_table = 0;
+    var next_table = -1;
     // Function to create a 5x5 grid of buttons
     function createGrid() {
         let gridHtml = '<table>';
@@ -1844,11 +1844,6 @@
         }
         gridHtml += '</table>';
         next_table += 1;
-        
-        // Check if hit_counter is equal to 5, then return to show_table plugin
-        // if (hit_counter >= 5) {
-        //     jsPsych.finishTrial();
-        // }
 
         return gridHtml;
 
