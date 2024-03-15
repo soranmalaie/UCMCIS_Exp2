@@ -41,7 +41,6 @@
 
     //To run the experiment from Prolific website 
     // capture info from Prolific
-
     // var subject_id = jsPsych.data.getURLVariable('PROLIFIC_PID');
     // var study_id = jsPsych.data.getURLVariable('STUDY_ID');
     // var session_id = jsPsych.data.getURLVariable('SESSION_ID');
@@ -58,7 +57,7 @@
 
     var timeline = [];
 
-    var tr_duration = 5000;
+    var tr_duration = 2000;
     //The sympol to be shown inside the hit buttons and background color
     var button_hit = 'O';
     var bc_color = 'green';
@@ -81,8 +80,8 @@
     //check the screen size
     var screen_check = {
         type: jsPsychBrowserCheck,
-        minimum_width: 1000,
-        minimum_height: 700,
+        minimum_width: 900,
+        minimum_height: 650,
 
         exclusion_message: (data) => {
             if (data.mobile) {
@@ -187,7 +186,7 @@
         "sy",
         "al",
         "wa",
-        "co",
+        "pl",
     ];
     var shuffled_stem_set = jsPsych.randomization.repeat(stem_set, 1);
 
@@ -205,18 +204,17 @@
         // new items
         'dream' + '\xa0\xa0\xa0\xa0' + 'break' + '\xa0\xa0\xa0\xa0' + 'light',// day 
         'fish' + '\xa0\xa0\xa0\xa0' + 'mine' + '\xa0\xa0\xa0\xa0' + 'rush',// gold
-        'aid' + '\xa0\xa0\xa0\xa0' + 'rubber' + '\xa0\xa0\xa0\xa0' + 'wagon',// band
-        'hammer' + '\xa0\xa0\xa0\xa0' + 'gear' + '\xa0\xa0\xa0\xa0' + 'hunter',// head
-        'way' + '\xa0\xa0\xa0\xa0' + 'board' + '\xa0\xa0\xa0\xa0' + 'sleep',// walk
-        'time' + '\xa0\xa0\xa0\xa0' + 'blown' + '\xa0\xa0\xa0\xa0' + 'nelson',// full
-        'cat' + '\xa0\xa0\xa0\xa0' + 'number' + '\xa0\xa0\xa0\xa0' + 'phone',// call
-        'dress' + '\xa0\xa0\xa0\xa0' + 'dial' + '\xa0\xa0\xa0\xa0' + 'flower',// sun
-        'basket' + '\xa0\xa0\xa0\xa0' + 'eight' + '\xa0\xa0\xa0\xa0' + 'snow',// ball
-        'shine' + '\xa0\xa0\xa0\xa0' + 'beam' + '\xa0\xa0\xa0\xa0' + 'struck',// moon
-        'wet' + '\xa0\xa0\xa0\xa0' + 'law' + '\xa0\xa0\xa0\xa0' + 'business',// suit
+        'aid' + '\xa0\xa0\xa0\xa0' + 'rubber' + '\xa0\xa0\xa0\xa0' + 'wagon',// band 
+        'hammer' + '\xa0\xa0\xa0\xa0' + 'gear' + '\xa0\xa0\xa0\xa0' + 'hunter',// head 
+        'way' + '\xa0\xa0\xa0\xa0' + 'board' + '\xa0\xa0\xa0\xa0' + 'sleep',// walk 
+        'political' + '\xa0\xa0\xa0\xa0' + 'surprise' + '\xa0\xa0\xa0\xa0' + 'line',// party 
+        'cat' + '\xa0\xa0\xa0\xa0' + 'number' + '\xa0\xa0\xa0\xa0' + 'phone',// call 
+        'knife' + '\xa0\xa0\xa0\xa0' + 'light' + '\xa0\xa0\xa0\xa0' + 'pal',// pen 
+        'basket' + '\xa0\xa0\xa0\xa0' + 'eight' + '\xa0\xa0\xa0\xa0' + 'snow',// ball 
+        'shine' + '\xa0\xa0\xa0\xa0' + 'beam' + '\xa0\xa0\xa0\xa0' + 'struck',// moon 
+        'wet' + '\xa0\xa0\xa0\xa0' + 'law' + '\xa0\xa0\xa0\xa0' + 'business',// suit 
     ];
     var shuffled_CRA_set = jsPsych.randomization.repeat(CRA_set, 1);
-
 
     var video_instruction = {
         type: jsPsychVideoKeyboardResponse,
@@ -1851,8 +1849,8 @@
 
     var countdown_trial = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<p style="font-size:24px;font-weight:bold;">Time Penalty!<p> ' +
-            '<p>The next trial will start in <span id="clock">1:00</span>.',
+        stimulus: '<p style="font-size:24px;font-weight:bold;">You did it!<p> ' +
+            '<p>Based on the number of empty squares you searched, the next trial will start in <span id="clock">1:00</span>.',
         choices: ['Continue'],
         on_load: function () {
             jsPsych.pluginAPI.clearAllTimeouts();
@@ -2020,11 +2018,11 @@
             [
                 {
                     type: 'likert',
-                    prompt: 'How would you describe the spatial distribution of the rewards? The rewards…',
+                    prompt: 'How would you describe the spatial distribution of the rewards on each map? On scale from 1 (clumpy) to 5 (randomly distributed), the rewards typically appeared…',
                     name: 'reward_distribution',
                     required: true,
-                    likert_scale_min_label: 'APPEARED IN CLUMPS',
-                    likert_scale_max_label: 'WERE DISTRIBUTED RANDOMLY',
+                    likert_scale_min_label: '[in clumps]     ',
+                    likert_scale_max_label: '     [randomly distributed]',
                     likert_scale_values: [
                         { value: 1 },
                         { value: 2 },
@@ -2037,7 +2035,7 @@
 
 
         ],
-        title: 'Please enter the following information',
+        // title: 'How would you describe the spatial distribution of the rewards on each map? On scale from 1 (clumpy) to 5 (randomly distributed), the rewards typically appeared…',
         button_label_finish: 'Submit',
     };
 
@@ -2064,8 +2062,8 @@
 
     var Exp_Done = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: "Please press Enter for your results to be saved. Do not close this window; you will be redirected to the Prolific website automatically to get your credit after we received your results." +
-            " It may take one minute, or longer depending on your internet speed! <p><b>Thank you for your participation :) </b>",
+        stimulus: "Please <b>press Enter</b> for your results to be saved. <b>Do not close this window.</b> You will be redirected to the Prolific website automatically to get your credit after we receive your results." +
+            " It may take one minute, or even longer depending on your internet speed! <p><b>Thank you for your participation :) </b>",
     };
 
 
@@ -2136,7 +2134,7 @@
                 type: jsPsychHtmlButtonResponse,
                 stimulus: createGrid,
                 choices: [],
-                prompt: "Find all 5 rewards with minimum clicks!",
+                prompt: "Find all 5 rewards in as few clicks as possible.",
                 // trial_duration: 10000,
 
                 on_load: function () {
@@ -2190,10 +2188,11 @@
                     '<p style="font-size:32px;font-weight:bold;">Instructions<p> ' +
                     '<p style="class=positivefeedback;font-size:24px">' +
                     'In this task, you will see three words and your job is to find the fourth word that makes a common' +
-                    ' two-word phrase with each of them. For example, if you saw “aid    rubber    wagon”, then the correct'
-                    + ' fourth word that makes a common two-word phrase with each of them is “band” — as in band-aid, rubber' +
-                    ' band, and bandwagon. Another example is “cream    skate    water”.   What word makes a common two-word ' +
+                    ' two-word phrase with each of them. For example, if you saw “sandwich    house    golf”, then the correct'
+                    + ' fourth word that makes a common two-word phrase with each of them is “club” — as in club sandwich, club house' +
+                    ', and golf club. In that case, you should enter your answer as "club". Another example is “cream    skate    water”.   What word makes a common two-word ' +
                     'phrase with each of them? It is ice — as in, ice cream, ice skate, and ice water. ' +
+                    'In that case, you should enter your answer as "ice".' +
                     '<p style="class=positivefeedback;font-size:24px">' +
                     'For each set of three words, you will have up to <b>30 seconds</b> to come up with your solution.' +
                     ' Please type your solution and press Enter right away.',
@@ -2245,7 +2244,7 @@
                 type: jsPsychHtmlButtonResponse,
                 stimulus: createGrid,
                 choices: [],
-                prompt: "Find all 5 rewards with minimum clicks!",
+                prompt: "Find all 5 rewards in as few clicks as possible.",
                 //trial_duration: 5000,
 
                 on_load: function () {
@@ -2287,6 +2286,16 @@
         timeline.push(demographic_info);
         timeline.push(final_comment);
         timeline.push(Exp_Done);
+
+        // const filename = `${subject_id}.csv`;
+        // const save_data = {
+        //     type: jsPsychPipe,
+        //     action: "save",
+        //     experiment_id: expID,
+        //     filename: filename,
+        //     data_string: ()=>jsPsych.data.get().csv()
+        // };
+        // timeline.push(save_data);
 
         jsPsych.run(timeline);
 
