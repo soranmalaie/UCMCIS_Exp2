@@ -219,7 +219,7 @@
     var video_instruction = {
         type: jsPsychVideoKeyboardResponse,
         prompt: "Here is a video demo of how to search the map for one reward. " +
-            "(Keep in mind that you will need to find all five rewards for each map.) <p> " +
+            "(Keep in mind that you will need to find five rewards for each map.) <p> " +
             "When the video has finished, hit <b>Enter</b> to start the task.",
         stimulus: [
             'video_instruction.mp4'
@@ -257,6 +257,15 @@
 
             }
 
+            else if (row === 1 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
             else if (row === 2 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
@@ -274,8 +283,35 @@
                 hit_counter += 1;
 
             }
-
+            
             else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -362,6 +398,42 @@
 
             }
 
+            else if (row === 1 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 2 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
             else {
                 // button.style.display = 'none';
                 button.style.backgroundColor = 'white';
@@ -394,7 +466,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 3 && col === 1) {
+            if (row === 6 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -403,7 +475,7 @@
 
             }
 
-            else if (row === 3 && col === 2) {
+            else if (row === 6 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -412,7 +484,7 @@
 
             }
 
-            else if (row === 3 && col === 3) {
+            else if (row === 6 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -421,7 +493,7 @@
 
             }
 
-            else if (row === 4 && col === 2) {
+            else if (row === 7 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -430,7 +502,42 @@
 
             }
 
-            else if (row === 4 && col === 3) {
+            else if (row === 7 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 7 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 8 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 8 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 8 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -471,7 +578,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 1 && col === 0) {
+            if (row === 5 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -480,7 +587,7 @@
 
             }
 
-            else if (row === 1 && col === 1) {
+            else if (row === 5 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -489,7 +596,7 @@
 
             }
 
-            else if (row === 2 && col === 1) {
+            else if (row === 5 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -498,7 +605,7 @@
 
             }
 
-            else if (row === 3 && col === 0) {
+            else if (row === 6 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -507,7 +614,41 @@
 
             }
 
-            else if (row === 3 && col === 1) {
+            else if (row === 6 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }else if (row === 6 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 7 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 7 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 7 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -548,7 +689,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 1 && col === 3) {
+            if (row === 1 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -557,7 +698,7 @@
 
             }
 
-            else if (row === 2 && col === 2) {
+            else if (row === 1 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -566,7 +707,7 @@
 
             }
 
-            else if (row === 2 && col === 3) {
+            else if (row === 1 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -584,7 +725,42 @@
 
             }
 
-            else if (row === 3 && col === 3) {
+            else if (row === 2 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 2 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 3 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 3 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 3 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -625,7 +801,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 0 && col === 1) {
+            if (row === 6 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -634,7 +810,7 @@
 
             }
 
-            else if (row === 1 && col === 0) {
+            else if (row === 6 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -643,7 +819,7 @@
 
             }
 
-            else if (row === 1 && col === 1) {
+            else if (row === 6 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -652,7 +828,7 @@
 
             }
 
-            else if (row === 1 && col === 2) {
+            else if (row === 7 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -661,7 +837,42 @@
 
             }
 
-            else if (row === 2 && col === 1) {
+            else if (row === 7 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 7 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 8 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 8 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 8 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -703,7 +914,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 2 && col === 2) {
+            if (row === 2 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -712,7 +923,7 @@
 
             }
 
-            else if (row === 2 && col === 3) {
+            else if (row === 2 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -721,7 +932,7 @@
 
             }
 
-            else if (row === 3 && col === 2) {
+            else if (row === 2 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -739,7 +950,43 @@
 
             }
 
+            else if (row === 3 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 3 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
             else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 4 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            
+            else if (row === 4 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -781,7 +1028,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 1 && col === 0) {
+            if (row === 0 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -790,7 +1037,7 @@
 
             }
 
-            else if (row === 1 && col === 2) {
+            else if (row === 0 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -799,7 +1046,7 @@
 
             }
 
-            else if (row === 1 && col === 4) {
+            else if (row === 1 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -808,7 +1055,15 @@
 
             }
 
-            else if (row === 3 && col === 1) {
+            else if (row === 2 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 1 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -817,7 +1072,7 @@
 
             }
 
-            else if (row === 3 && col === 3) {
+            else if (row === 3 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -826,6 +1081,34 @@
 
             }
 
+            else if (row === 4 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+           
             else {
                 // button.style.display = 'none';
                 button.style.backgroundColor = 'white';
@@ -858,7 +1141,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 1 && col === 1) {
+            if (row === 0 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -867,7 +1150,7 @@
 
             }
 
-            else if (row === 1 && col === 3) {
+            else if (row === 0 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -876,7 +1159,7 @@
 
             }
 
-            else if (row === 3 && col === 0) {
+            else if (row === 1 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -885,7 +1168,7 @@
 
             }
 
-            else if (row === 3 && col === 2) {
+            else if (row === 2 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -894,7 +1177,42 @@
 
             }
 
-            else if (row === 4 && col === 4) {
+            else if (row === 2 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 4 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -944,8 +1262,7 @@
                 hit_counter += 1;
 
             }
-
-            else if (row === 2 && col === 0) {
+            else if (row === 2 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -954,7 +1271,7 @@
 
             }
 
-            else if (row === 2 && col === 2) {
+            else if (row === 2 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -963,7 +1280,7 @@
 
             }
 
-            else if (row === 3 && col === 4) {
+            else if (row === 2 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -972,7 +1289,43 @@
 
             }
 
-            else if (row === 4 && col === 0) {
+            else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1014,7 +1367,15 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 0 && col === 4) {
+            if (row === 0 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 0 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1023,7 +1384,7 @@
 
             }
 
-            else if (row === 1 && col === 1) {
+            else if (row === 1 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1032,7 +1393,7 @@
 
             }
 
-            else if (row === 2 && col === 4) {
+            else if (row === 1 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1041,7 +1402,7 @@
 
             }
 
-            else if (row === 4 && col === 1) {
+            else if (row === 2 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1050,7 +1411,34 @@
 
             }
 
-            else if (row === 4 && col === 3) {
+            else if (row === 4 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1092,7 +1480,15 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 0 && col === 1) {
+            if (row === 0 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 1 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1101,7 +1497,15 @@
 
             }
 
-            else if (row === 0 && col === 4) {
+            else if (row === 1 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 3 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1110,7 +1514,7 @@
 
             }
 
-            else if (row === 2 && col === 1) {
+            else if (row === 3 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1119,7 +1523,7 @@
 
             }
 
-            else if (row === 2 && col === 3) {
+            else if (row === 3 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1128,7 +1532,7 @@
 
             }
 
-            else if (row === 4 && col === 2) {
+            else if (row === 5 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1136,6 +1540,26 @@
                 hit_counter += 1;
 
             }
+
+            else if (row === 5 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            
 
             else {
                 // button.style.display = 'none';
@@ -1170,7 +1594,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 0 && col === 0) {
+            if (row === 0 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1179,16 +1603,7 @@
 
             }
 
-            else if (row === 0 && col === 2) {
-                button.style.backgroundColor = bc_color;
-                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
-
-                target[clk_num] = 'hit';
-                hit_counter += 1;
-
-            }
-
-            else if (row === 1 && col === 4) {
+            else if (row === 1 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1206,7 +1621,51 @@
 
             }
 
-            else if (row === 3 && col === 3) {
+            else if (row === 2 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+            else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1248,7 +1707,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 1 && col === 0) {
+            if (row === 0 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1266,6 +1725,15 @@
 
             }
 
+            else if (row === 2 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
             else if (row === 3 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
@@ -1275,7 +1743,7 @@
 
             }
 
-            else if (row === 3 && col === 4) {
+            else if (row === 3 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1284,7 +1752,34 @@
 
             }
 
-            else if (row === 4 && col === 2) {
+            else if (row === 4 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1326,7 +1821,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 1 && col === 1) {
+            if (row === 0 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1344,7 +1839,7 @@
 
             }
 
-            else if (row === 2 && col === 1) {
+            else if (row === 1 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1353,7 +1848,7 @@
 
             }
 
-            else if (row === 2 && col === 4) {
+            else if (row === 1 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1362,7 +1857,43 @@
 
             }
 
-            else if (row === 4 && col === 1) {
+            else if (row === 2 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 2 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1404,7 +1935,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 0 && col === 2) {
+            if (row === 0 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1413,7 +1944,7 @@
 
             }
 
-            else if (row === 2 && col === 3) {
+            else if (row === 0 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1422,7 +1953,7 @@
 
             }
 
-            else if (row === 3 && col === 3) {
+            else if (row === 1 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1431,58 +1962,7 @@
 
             }
 
-            else if (row === 3 && col === 4) {
-                button.style.backgroundColor = bc_color;
-                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
-
-                target[clk_num] = 'hit';
-                hit_counter += 1;
-
-            }
-
-            else if (row === 4 && col === 0) {
-                button.style.backgroundColor = bc_color;
-                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
-
-                target[clk_num] = 'hit';
-                hit_counter += 1;
-
-            }
-
-            else {
-                // button.style.display = 'none';
-                button.style.backgroundColor = 'white';
-
-                target[clk_num] = 'miss';
-
-            }
-
-
-            button_var[clk_num, clk_num] = [row, col];
-            RT[clk_num] = performance.now() - pr_click_t;
-            table[clk_num] = 'betwixt_2';
-
-            clk_num += 1;
-            pr_click_t = performance.now();
-        }
-        if (hit_counter === 5) {
-            setTimeout(function () {
-                if (hit_counter === 5) { // Check again after delay
-                    jsPsych.finishTrial();
-                }
-            }, 500);
-        }
-
-    }
-
-    // Function to reveal the background of the button upon click
-    function table_betwixt_3(button, row, col) {
-        if (!button.disable && hit_counter < 5) {
-
-            button.disabled = true; // Disable the button
-
-
-            if (row === 0 && col === 4) {
+            else if (row === 1 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1500,7 +1980,7 @@
 
             }
 
-            else if (row === 3 && col === 0) {
+            else if (row === 2 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1509,7 +1989,7 @@
 
             }
 
-            else if (row === 3 && col === 1) {
+            else if (row === 4 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1518,7 +1998,130 @@
 
             }
 
-            else if (row === 4 && col === 3) {
+            else if (row === 5 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+
+                target[clk_num] = 'miss';
+
+            }
+
+            button_var[clk_num, clk_num] = [row, col];
+            RT[clk_num] = performance.now() - pr_click_t;
+            table[clk_num] = 'betwixt_2';
+
+            clk_num += 1;
+            pr_click_t = performance.now();
+        }
+
+        if (hit_counter === 5) {
+            setTimeout(function () {
+                if (hit_counter === 5) { // Check again after delay
+                    jsPsych.finishTrial();
+                }
+            }, 500);
+        }
+
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_3(button, row, col) {
+        if (!button.disable && hit_counter < 5) {
+
+            button.disabled = true; // Disable the button
+
+
+            if (row === 0 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 0 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 2 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 2 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1560,7 +2163,7 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 0 && col === 0) {
+            if (row === 1 && col === 0) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1569,7 +2172,7 @@
 
             }
 
-            else if (row === 0 && col === 1) {
+            else if (row === 2 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1578,7 +2181,7 @@
 
             }
 
-            else if (row === 1 && col === 0) {
+            else if (row === 3 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1587,7 +2190,7 @@
 
             }
 
-            else if (row === 2 && col === 2) {
+            else if (row === 3 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1596,7 +2199,43 @@
 
             }
 
-            else if (row === 4 && col === 2) {
+            else if (row === 4 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 1) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1621,6 +2260,7 @@
             clk_num += 1;
             pr_click_t = performance.now();
         }
+
         if (hit_counter === 5) {
             setTimeout(function () {
                 if (hit_counter === 5) { // Check again after delay
@@ -1638,7 +2278,122 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 0 && col === 0) {
+            if (row === 0 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 1 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 1 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 2 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 3 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 4 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 4) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else {
+                // button.style.display = 'none';
+                button.style.backgroundColor = 'white';
+
+                target[clk_num] = 'miss';
+
+            }
+
+
+            button_var[clk_num, clk_num] = [row, col];
+            RT[clk_num] = performance.now() - pr_click_t;
+            table[clk_num] = 'betwixt_5';
+
+            clk_num += 1;
+            pr_click_t = performance.now();
+        }
+
+        if (hit_counter === 5) {
+            setTimeout(function () {
+                if (hit_counter === 5) { // Check again after delay
+                    jsPsych.finishTrial();
+                }
+            }, 500);
+        }
+
+    }
+
+    // Function to reveal the background of the button upon click
+    function table_betwixt_6(button, row, col) {
+        if (!button.disable && hit_counter < 5) {
+
+            button.disabled = true; // Disable the button
+
+
+            if (row === 0 && col === 4) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1665,7 +2420,7 @@
 
             }
 
-            else if (row === 2 && col === 3) {
+            else if (row === 3 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1674,76 +2429,7 @@
 
             }
 
-            else if (row === 4 && col === 1) {
-                button.style.backgroundColor = bc_color;
-                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
-
-                target[clk_num] = 'hit';
-                hit_counter += 1;
-
-            }
-
-            else {
-                // button.style.display = 'none';
-                button.style.backgroundColor = 'white';
-
-                target[clk_num] = 'miss';
-
-            }
-
-
-            button_var[clk_num, clk_num] = [row, col];
-            RT[clk_num] = performance.now() - pr_click_t;
-            table[clk_num] = 'betwixt_5';
-
-            clk_num += 1;
-            pr_click_t = performance.now();
-        }
-        if (hit_counter === 5) {
-            setTimeout(function () {
-                if (hit_counter === 5) { // Check again after delay
-                    jsPsych.finishTrial();
-                }
-            }, 500);
-        }
-
-    }
-
-    // Function to reveal the background of the button upon click
-    function table_betwixt_6(button, row, col) {
-        if (!button.disable && hit_counter < 5) {
-
-            button.disabled = true; // Disable the button
-
-
-            if (row === 0 && col === 3) {
-                button.style.backgroundColor = bc_color;
-                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
-
-                target[clk_num] = 'hit';
-                hit_counter += 1;
-
-            }
-
-            else if (row === 1 && col === 0) {
-                button.style.backgroundColor = bc_color;
-                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
-
-                target[clk_num] = 'hit';
-                hit_counter += 1;
-
-            }
-
-            else if (row === 1 && col === 1) {
-                button.style.backgroundColor = bc_color;
-                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
-
-                target[clk_num] = 'hit';
-                hit_counter += 1;
-
-            }
-
-            else if (row === 2 && col === 1) {
+            else if (row === 4 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1753,6 +2439,33 @@
             }
 
             else if (row === 4 && col === 3) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 2) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 5) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 6) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1777,6 +2490,7 @@
             clk_num += 1;
             pr_click_t = performance.now();
         }
+
         if (hit_counter === 5) {
             setTimeout(function () {
                 if (hit_counter === 5) { // Check again after delay
@@ -1794,7 +2508,16 @@
             button.disabled = true; // Disable the button
 
 
-            if (row === 1 && col === 4) {
+            if (row === 1 && col === 0) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 1 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1812,7 +2535,7 @@
 
             }
 
-            else if (row === 3 && col === 1) {
+            else if (row === 2 && col === 3) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1821,7 +2544,7 @@
 
             }
 
-            else if (row === 3 && col === 2) {
+            else if (row === 3 && col === 5) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -1830,7 +2553,34 @@
 
             }
 
-            else if (row === 4 && col === 4) {
+            else if (row === 3 && col === 6) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 5 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 1) {
+                button.style.backgroundColor = bc_color;
+                button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
+
+                target[clk_num] = 'hit';
+                hit_counter += 1;
+
+            }
+
+            else if (row === 6 && col === 2) {
                 button.style.backgroundColor = bc_color;
                 button.innerHTML = `<span style="font-weight: bold; font-size: 40px;">${button_hit}</span>`;
 
@@ -2137,7 +2887,7 @@
                     ' If that location contains a reward, a green circle will appear. Congrats!<p>' +
                     '<p style="font-size:24px;"> If the location does not contain a reward,' +
                     '  the square will turn white to indicate that it is empty. Try again.' +
-                    ' For each map, you must find all five rewards.' +
+                    ' For each map, you must find five rewards.' +
                     ' Once you have found all five, click <b>Continue</b>. ' +
                     '<p style="font-size:24px;">Search as few locations as possible! For each empty square that you search,' +
                     ' you will receive a time penalty (0.5 seconds/miss), and you will need to wait before moving on to the next trial.' +
@@ -2243,7 +2993,7 @@
                     ' If that location contains a reward, a green circle will appear. Congrats!<p>' +
                     '<p style="font-size:24px;"> If the location does not contain a reward,' +
                     '  the square will turn white to indicate that it is empty. Try again.' +
-                    ' For each map, you must find all five rewards.' +
+                    ' For each map, you must find five rewards.' +
                     ' Once you have found all five, click <b>Continue</b>. ' +
                     '<p style="font-size:24px;">Search as few locations as possible! For each empty square that you search,' +
                     ' you will receive a time penalty (0.5 seconds/miss), and you will need to wait before moving on to the next trial.' +
@@ -2337,7 +3087,7 @@
             filename: filename,
             data_string: () => jsPsych.data.get().csv()
         };
-        timeline.push(save_data);
+        // timeline.push(save_data);
 
         // pilot version, pre prolofic, final message
         var pilot_done = {
@@ -2345,6 +3095,7 @@
             stimulus: "Data received! You can now press <b><kbd>Esc</kbd></b> to exit full-screen mode and close this tab.",
         };
         timeline.push(pilot_done);
+
 
         jsPsych.run(timeline);
 
