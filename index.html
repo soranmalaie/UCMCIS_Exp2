@@ -2625,9 +2625,9 @@
     // Function to create a 5x5 grid of buttons
     function createGrid() {
         let gridHtml = '<table>';
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 7; i++) {
             gridHtml += '<tr>';
-            for (let j = 0; j < 5; j++) {
+            for (let j = 0; j < 7; j++) {
                 gridHtml += `<td><button id="cell_${i}_${j}" style="width:60px; height:60px;" onclick="reveal_button_order[next_table](this, ${i}, ${j})"> </button></td>`;
             }
             gridHtml += '</tr>';
